@@ -1,3 +1,5 @@
+# File: api/index.py
+
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 from datetime import datetime
@@ -22,7 +24,6 @@ class StatusResponse(BaseModel):
 @app.post("/register")
 async def register_complaint(request: RegisterRequest):
     try:
-        # Generate unique complaint ID
         complaint_id = f"CMP{abs(hash(request.mobile + request.complaint)) % 10000:04}"
 
         result = {
